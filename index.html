@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Intelligence Audit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="noise-overlay"></div>
+    <div class="ambient-light"></div>
+
+    <!-- MAIN APP CONTAINER -->
+    <div class="app-container">
+
+        <!-- HEADER (Always visible during Steps) -->
+        <header class="top-nav" id="top-nav">
+            <div class="brand">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>GROWTH<span style="color:var(--primary)">AI</span></span>
+            </div>
+            <div class="progress-wrapper">
+                <div class="step-indicator" id="step-indicator">1 / 9</div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-bar"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- WIZARD AREA -->
+        <main class="wizard-area" id="wizard-area">
+
+            <!-- STEP 1: Owner -->
+            <div class="step-card active" id="step-1">
+                <div class="card-content">
+                    <h2>Siz biznes egasimisiz?</h2>
+                    <p class="sub-text">Analitika to'g'ri chiqishi uchun buni bilishimiz shart.</p>
+
+                    <div class="interactive-grid">
+                        <div class="choice-card" onclick="nextStep(1, 'isOwner', 'yes')">
+                            <div class="icon-glow"><i class="fa-solid fa-crown"></i></div>
+                            <h3>Ha, Rahbarman</h3>
+                            <p>Strategik qarorlarni qabul qilaman</p>
+                            <div class="selection-indicator"></div>
+                        </div>
+                        <div class="choice-card" onclick="nextStep(1, 'isOwner', 'no')">
+                            <div class="icon-glow"><i class="fa-solid fa-user-gear"></i></div>
+                            <h3>Yo'q, Menejerman</h3>
+                            <p>Operatsion jarayonlarni boshqaraman</p>
+                            <div class="selection-indicator"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: CRM -->
+            <div class="step-card" id="step-2">
+                <div class="card-content">
+                    <h2>CRM Tizimi mavjudmi?</h2>
+                    <p class="sub-text">Mijozlar bazasi (LTV) nazorati bormi?</p>
+
+                    <div class="interactive-grid">
+                        <div class="choice-card" onclick="nextStep(2, 'hasCRM', 'yes')">
+                            <div class="icon-glow"><i class="fa-solid fa-database"></i></div>
+                            <h3>Ha, Aktiv CRM bor</h3>
+                            <p>AmoCRM, Bitrix yoki shaxsiy tizim</p>
+                        </div>
+                        <div class="choice-card warning" onclick="nextStep(2, 'hasCRM', 'no')">
+                            <div class="icon-glow"><i class="fa-solid fa-file-excel"></i></div>
+                            <h3>Yo'q / Excel</h3>
+                            <p>Mijozlar ro'yxati qo'lda yuritiladi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3: Sales -->
+            <div class="step-card" id="step-3">
+                <div class="card-content">
+                    <h2>Sotuv menejerlari bormi?</h2>
+                    <p class="sub-text">Lidlarni kim "yopadi"?</p>
+
+                    <div class="interactive-grid">
+                        <div class="choice-card" onclick="nextStep(3, 'hasSales', 'yes')">
+                            <div class="icon-glow"><i class="fa-solid fa-users-viewfinder"></i></div>
+                            <h3>Sotuv Bo'limi Bor</h3>
+                            <p>Skriptlar va KPI asosida ishlaydi</p>
+                        </div>
+                        <div class="choice-card warning" onclick="nextStep(3, 'hasSales', 'no')">
+                            <div class="icon-glow"><i class="fa-solid fa-headset"></i></div>
+                            <h3>Yo'q / O'zim</h3>
+                            <p>Hozircha o'zim yoki administrator</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4: Social -->
+            <div class="step-card" id="step-4">
+                <div class="card-content">
+                    <h2>Ijtimoiy Tarmoq Holati</h2>
+                    <p class="sub-text">Brendingiz mijozda ishonch uyg'otadimi?</p>
+
+                    <div class="interactive-list">
+                        <div class="choice-row" onclick="nextStep(4, 'social', 'good')">
+                            <div class="row-icon"><i class="fa-brands fa-instagram"></i></div>
+                            <div class="row-info">
+                                <h3>Professional (Upakovka)</h3>
+                                <p>Doimiy kontent, target, faol folloverlar</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right arrow-indicator"></i>
+                        </div>
+                        <div class="choice-row" onclick="nextStep(4, 'social', 'avg')">
+                            <div class="row-icon"><i class="fa-regular fa-star"></i></div>
+                            <div class="row-info">
+                                <h3>O'rtacha holat</h3>
+                                <p>Vaqti-vaqti bilan yuritiladi</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right arrow-indicator"></i>
+                        </div>
+                        <div class="choice-row warning-border" onclick="nextStep(4, 'social', 'bad')">
+                            <div class="row-icon"><i class="fa-solid fa-ghost"></i></div>
+                            <div class="row-info">
+                                <h3>Mavjud emas / Eski</h3>
+                                <p>Oxirgi post 3 oydan oldin qo'yilgan</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right arrow-indicator"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 5: Niche -->
+            <div class="step-card" id="step-5">
+                <div class="card-content">
+                    <h2>Biznes Sohasi</h2>
+                    <div class="input-card">
+                        <input type="text" id="input-niche" placeholder="Masalan: Mebel ishlab chiqarish">
+                        <div class="floating-btn" onclick="validateAndNext(5, 'niche')">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 6: Platform -->
+            <div class="step-card" id="step-6">
+                <div class="card-content">
+                    <h2>Trafik Manbai</h2>
+
+                    <div class="interactive-grid">
+                        <div class="choice-card small" onclick="nextStep(6, 'platform', 'Instagram')">
+                            <i class="fa-brands fa-instagram big-icon"></i>
+                            <h3>Instagram/FB</h3>
+                        </div>
+                        <div class="choice-card small" onclick="nextStep(6, 'platform', 'Telegram')">
+                            <i class="fa-brands fa-telegram big-icon"></i>
+                            <h3>Telegram</h3>
+                        </div>
+                        <div class="choice-card small" onclick="nextStep(6, 'platform', 'Google')">
+                            <i class="fa-brands fa-google big-icon"></i>
+                            <h3>Google/YT</h3>
+                        </div>
+                        <div class="choice-card small" onclick="nextStep(6, 'platform', 'Boshqa')">
+                            <i class="fa-solid fa-arrows-spin big-icon"></i>
+                            <h3>Mikro-bloglar</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 7, 8: Financial Inputs -->
+            <div class="step-card" id="step-7">
+                <div class="card-content">
+                    <h2>Moliyaviy Maqsad ($)</h2>
+                    <p class="sub-text">Oylik sof daromad maqsadingiz</p>
+                    <div class="input-card money-input">
+                        <span>$</span>
+                        <input type="number" id="input-goal" placeholder="10000">
+                        <div class="floating-btn" onclick="validateAndNext(7, 'goal')">Davom etish</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-card" id="step-8">
+                <div class="card-content">
+                    <h2>O'rtacha Chek ($)</h2>
+                    <p class="sub-text">Bitta mijoz qoldiradigan o'rtacha summa</p>
+                    <div class="input-card money-input">
+                        <span>$</span>
+                        <input type="number" id="input-check" placeholder="50">
+                        <div class="floating-btn" onclick="validateAndNext(8, 'check')">Davom etish</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 9: Conversion -->
+            <div class="step-card" id="step-9">
+                <div class="card-content">
+                    <h2>Sotuv Konversiyasi (%)</h2>
+                    <p class="sub-text">10 ta liddan nechtasi sotib oladi?</p>
+                    <div class="input-card money-input" id="conv-input-wrapper">
+                        <span>%</span>
+                        <input type="number" id="input-conv" placeholder="20" min="0" max="100">
+                        <div class="floating-btn pulse" onclick="validateConversion()">
+                            AUDITNI YAKUNLASH
+                        </div>
+                    </div>
+                    <p id="conv-error-msg" style="display: none; color: #f43f5e; margin-top: 10px; font-size: 0.9rem;">
+                        <i class="fa-solid fa-circle-exclamation"></i> Konversiya 0–100% oralig‘ida bo‘lishi kerak
+                    </p>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- DASHBOARD AREA (Hidden Initially) -->
+        <main class="dashboard-area" id="dashboard-area">
+
+            <header class="dash-header">
+                <div>
+                    <h1>MARKETING DIAGNOSTIKASI</h1>
+                    <p class="date">Audit sanasi: <span id="current-date"></span></p>
+                </div>
+                <button class="btn-restart" onclick="location.reload()">
+                    <i class="fa-solid fa-house"></i> Bosh sahifaga qaytish
+                </button>
+            </header>
+
+            <div class="dashboard-grid">
+
+                <!-- 1. KEY INSIGHTS (Money Leak) -->
+                <div class="dash-card leak-card">
+                    <div class="card-head">
+                        <i class="fa-solid fa-filter-circle-dollar"></i>
+                        <h3>Yo'qotilayotgan Imkoniyat</h3>
+                    </div>
+                    <div class="leak-amount" id="leak-amount">$0</div>
+                    <p class="leak-desc" id="leak-desc">Tizim yo'qligi sababli oylik potensial yo'qotish.</p>
+                </div>
+
+                <!-- 2. FUNNEL METRICS -->
+                <div class="dash-card metrics-card">
+                    <h3><i class="fa-solid fa-chart-simple"></i> Funnel Maqsadi</h3>
+                    <div class="metric-row">
+                        <span>Maqsad:</span>
+                        <strong id="d-goal">$0</strong>
+                    </div>
+                    <div class="metric-row">
+                        <span>Kerakli Mijoz:</span>
+                        <strong id="d-clients">0</strong>
+                    </div>
+                    <div class="metric-row highlight">
+                        <span>Kerakli Lidlar:</span>
+                        <strong id="d-leads">0</strong>
+                    </div>
+                    <div class="budget-est">
+                        <span>Tavsiya etilgan Byudjet:</span>
+                        <h4 id="d-budget">$0 - $0</h4>
+                    </div>
+                </div>
+
+                <!-- 3. STRENGTHS & WEAKNESSES -->
+                <div class="dash-card sw-card">
+                    <h3>Diagnostika Natijalari</h3>
+                    <div class="sw-grid">
+                        <div class="sw-col">
+                            <h4><i class="fa-solid fa-shield-halved"></i> Kuchli Tomonlar</h4>
+                            <ul id="list-strengths"></ul>
+                        </div>
+                        <div class="sw-col weak">
+                            <h4><i class="fa-solid fa-triangle-exclamation"></i> Zaif Nuqtalar</h4>
+                            <ul id="list-weaknesses"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. 30-DAY PLAN -->
+                <div class="dash-card plan-card">
+                    <h3>🚀 30 Kunlik Amaliy Reja</h3>
+                    <div class="action-steps" id="action-plan">
+                        <!-- Dynamic Steps -->
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="dash-footer">
+                <div class="agent-cta" onclick="contactExpert()">
+                    <div class="agent-avatar"><i class="fa-solid fa-user-astronaut"></i></div>
+                    <div class="agent-text">
+                        <h4>Strategiyani muhokama qilish</h4>
+                        <p>Ekspert bilan bepul 15 daqiqalik tahlil</p>
+                    </div>
+                    <div class="agent-arrow"><i class="fa-solid fa-phone"></i></div>
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
